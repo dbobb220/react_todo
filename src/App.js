@@ -19,6 +19,12 @@ class App extends Component {
     });
   }
 
+  deleteItem = () => {
+    this.setState({
+      
+    })
+  }
+
   onChange = (e) => {
     this.setState({
       text: e.target.value
