@@ -9,6 +9,7 @@ class App extends Component {
       text: '',
       isClicked: false
     };
+    this.deleteItem = this.deleteItem.bind(this)
   }
 
   onClick = () => {
@@ -19,9 +20,10 @@ class App extends Component {
     });
   }
 
-  deleteItem = () => {
+  deleteItem = (index) => {
+    let newToDo = this.todos.splice(index, 1);
     this.setState({
-      
+      todos: newToDo
     })
   }
 
@@ -36,9 +38,11 @@ class App extends Component {
       <div className="App">
         <input value={this.state.text} onChange={this.onChange}/>
         <button onClick={this.onClick}>Button</button>
-        {this.state.todos.map(function(value) {
+        {this.state.todos.map(function(value, index) {
           return (
-            <p>{value}</p>
+            <div onClick={() => {this.deleteItem(index)}} key={index}>
+              <p>{value}</p>
+            </div>
           )
         })}
       </div>
